@@ -25,7 +25,11 @@ def _action(cmd):
 
 def action(request):
     if request.method == 'POST' and request.is_ajax():
-        cmd = ['ping', '-c', '1', 'www.baidu.com']  # 测试命令，你可以定义的更复杂
+        result = request.POST
+        
+        # cmd = ['ping', '-c', '1', 'www.baidu.com']  # 测试命令，你可以定义的更复杂
+        cmd = result['btncmd'].split()
+        print cmd
         cmd_exec = _action(cmd)  # 调用执行函数，获得结果
         stdout = cmd_exec['stdout']
         stderr = cmd_exec['stderr']

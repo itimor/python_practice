@@ -24,15 +24,20 @@
                 </select>
                 <br/>
                 <br/>
+                <p><strong>输入执行命令</strong></p>
+                <input type="text" id="cmd" name="cmd" class="form-control">
+                <br/>
+                <br/>
                 <p><strong>请选择阵营</strong></p>
-
-<div class="camp">
-    <input type="radio" name="camp" value="alliance" checked="chedked">联盟
-    <input type="radio" name="camp"value="horde">部落
-</div>
+                <div class="camp">
+                    <input type="radio" name="camp" value="alliance" checked="chedked">联盟
+                    <input type="radio" name="camp" value="horde">部落
+                </div>
                 <br/>
                 <br/>
-<button style="margin-top:10px" type="submit" class="btn btn-danger" value='Click' id="btn1" disabled data-toggle="tooltip" data-placement="top" title="朋友，你要为你的行为付出代价的！">执行</button>
+                <button style="margin-top:10px" type="submit" class="btn btn-danger" value='Click' id="btn1" disabled
+                        data-toggle="tooltip" data-placement="bottom" title="朋友，你要为你的行为付出代价的！">执行
+                </button>
                 <label id="breath-light">执行中</label>
             </div>
             <div class="col-sm-9 col-md-7 main">
@@ -47,7 +52,9 @@
 <script>
     $(document).ready(function () {
         $("#breath-light").hide();
-        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+        });
 
         $.ajaxSetup({
             beforeSend: function (xhr, settings) {
@@ -83,8 +90,10 @@
             selbrand = $("#selbrand").val();
             selfip = $("#selfip").val();
             btncamp = $('.camp').find('input:checked').val();
+            btncmd = $("input[id='cmd']").val();
+            console.log(btncmd);
 
-            if (selbrand == "抠脚大汉" || selfip == "萝莉" || btncamp == "alliance") {
+            if (selbrand == "抠脚大汉" || selfip == "萝莉" || btncamp == "alliance" || btncmd.length == 0) {
                 $("#btn1").prop("disabled", true);
             }
             else {
@@ -96,11 +105,12 @@
             button_status();
         });
 
-        $("#btn1").click(function () {
+        $("#btn1").click(function (action) {
             data = {  //这些数据可以传到后端作为参数
                 selbrand: $("#selbrand").val(),
                 selfip: $("#selfip").val(),
-                camp: $("#camp").val()
+                btncamp: $('.camp').find('input:checked').val(),
+                btncmd: $("input[id='cmd']").val(),
             };
             $.ajax({
                 url: '/action/',
