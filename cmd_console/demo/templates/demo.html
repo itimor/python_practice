@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "base.html" %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <div class="form-group">
+                <!-- {% csrf_token %} -->
+                <p><strong>请选择自身属性</strong></p>
+                <select class="form-control" id="selbrand" name="selbrand">
+                    <option>抠脚大汉</option>
+                    <option>萌妹纸</option>
+                </select>
+                <br/>
+                <br/>
+
+
+                <p><strong>请选择喜欢的风格</strong></p>
+                <select class="form-control" id="selfip" name="selfips">
+                    <option>萝莉</option>
+                    <option>御姐</option>
+                </select>
+                <br/>
+                <br/>
+                <p><strong>请选择阵营</strong></p>
+
+<div class="camp">
+    <input type="radio" name="camp" value="alliance" checked="chedked">联盟
+    <input type="radio" name="camp"value="horde">部落
+</div>
+                <br/>
+                <br/>
+<button style="margin-top:10px" type="submit" class="btn btn-danger" value='Click' id="btn1" disabled data-toggle="tooltip" data-placement="top" title="朋友，你要为你的行为付出代价的！">执行</button>
+                <label id="breath-light">执行中</label>
+            </div>
+            <div class="col-sm-9 col-md-7 main">
+                <label class="control-label" for="terminal-output">执行结果</label>
+                <p id="terminal-output" style="background-color:black;min-height:150px;color:rgb(45,232,29)">
+                <p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#breath-light").hide();
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+
+                if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                    // Only send the token to relative URLs i.e. locally.
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+
+                // beforeSend, show processing bar and disable restart button
+                $("#breath-light").show();
+                $("#btn1").attr("disabled", "true");
+                $("#terminal-output").html('');
+            }
+        });
+
+        function button_status() {
+            selbrand = $("#selbrand").val();
+            selfip = $("#selfip").val();
+            btncamp = $('.camp').find('input:checked').val();
+
+            if (selbrand == "抠脚大汉" || selfip == "萝莉" || btncamp == "alliance") {
+                $("#btn1").prop("disabled", true);
+            }
+            else {
+                $("#btn1").prop("disabled", false);
+            }
+        }
+
+        $("#selbrand, #selfip, .camp").change(function () {
+            button_status();
+        });
+
+        $("#btn1").click(function () {
+            data = {  //这些数据可以传到后端作为参数
+                selbrand: $("#selbrand").val(),
+                selfip: $("#selfip").val(),
+                camp: $("#camp").val()
+            };
+            $.ajax({
+                url: '/action/',
+                type: 'POST',
+                data: data,
+                dataType: 'json',
+                success: function (redata) {
+                    for (i = 0; i < redata.length; i++) {
+                        $("#terminal-output").append(redata[i] + "<br>");
+                    }
+                }
+            });
+        });
+
+        $(document).ajaxComplete(function (event, request, settings) {
+            $("#breath-light").hide();
+            // $(".form-group").reset();
+        });
+
+    });
+</script>
+
+</html>
