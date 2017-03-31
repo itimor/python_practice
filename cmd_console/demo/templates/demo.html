@@ -35,8 +35,9 @@
                 </div>
                 <br/>
                 <br/>
-                <button style="margin-top:10px" type="submit" class="btn btn-danger" value='Click' id="btn1" disabled
-                        data-toggle="tooltip" data-placement="bottom" title="朋友，你要为你的行为付出代价的！">执行
+                <br/>
+                <button style="margin-top:5px" type="submit" class="btn btn-danger" value='Click' id="btn1" disabled
+                        data-toggle="tooltip" data-placement="top" title="朋友，你要为你的行为付出代价">执行
                 </button>
                 <label id="breath-light">执行中</label>
             </div>
@@ -90,7 +91,7 @@
             selbrand = $("#selbrand").val();
             selfip = $("#selfip").val();
             btncamp = $('.camp').find('input:checked').val();
-            btncmd = $("input[id='cmd']").val();
+            btncmd = $("input[id='cmd']").val();  //一定要对这个cmd加验证，比如 rm -rf/reboot/shutdown/init/... 等命令不让执行
             console.log(btncmd);
 
             if (selbrand == "抠脚大汉" || selfip == "萝莉" || btncamp == "alliance" || btncmd.length == 0) {
