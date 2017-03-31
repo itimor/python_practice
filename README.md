@@ -1,7 +1,7 @@
 # cmd_to_web
 执行系统命令，在web上输出执行结果
 
-#code 
+# use 
 
 git clone https://github.com/itimor/cmd_to_web.git
 
