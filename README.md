@@ -2,15 +2,13 @@
 执行系统命令，在web上输出执行结果
 
 #code 
-'''
+
 git clone https://github.com/itimor/cmd_to_web.git
-'''
 
 # run
-'''
+
 cd cmd_to_web
 python manage.py runserver 0.0.0.0:7000
-'''
 
 # show
 
