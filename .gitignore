@@ -1,0 +1,12 @@
+*.pyc
+db.sqlite3
+*.db
+.idea/
+.DS_Store
+.python-version
+migrations/
+img/
+cover/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
