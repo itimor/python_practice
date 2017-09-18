@@ -1,0 +1,35 @@
+{% include 'head.html' %}
+
+<body class="login-body">
+
+<div class="container">
+    <form class="form-signin" action="{{ url_for('user.register') }}" method="post">
+        {{ form.hidden_tag() }}
+        <h2 class="form-signin-heading">registration now</h2>
+        <div class="login-wrap">
+            <p>Enter your personal details below</p>
+            <input type="text" class="form-control" placeholder="Email" autofocus name="accountNumber">
+            <input type="text" class="form-control" placeholder="User Name" autofocus name="name">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <input type="password" class="form-control" placeholder="Re-type Password" name="repassword">
+            <button class="btn btn-lg btn-login btn-block" type="submit">Sign Up</button>
+
+            <div class="registration">
+                Already Registered.
+                <a class="" href="{{ url_for('user.login') }}">
+                    Login
+                </a>
+            </div>
+        </div>
+        {% if form.errors %}
+            <ul>
+                {% for name, errors in form.errors.items() %}
+                    {% for error in errors %}
+                        <li class="text-danger">{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </form>
+</div>
+</body>

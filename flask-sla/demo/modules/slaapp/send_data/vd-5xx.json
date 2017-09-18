@@ -1,0 +1,58 @@
+{
+	"from": 0,
+	"query": {
+		"filtered": {
+			"filter": {
+				"bool": {
+					"must": {
+						"bool": {
+							"must": [
+								{
+									"query": {
+										"match": {
+											"server": {
+												"query": "10.252.218.121",
+												"type": "phrase"
+											}
+										}
+									}
+								},
+								{
+									"bool": {
+										"should": [
+										         { 
+  "query": { 
+    "range": { 
+      "request_status": { 
+        "gt": 499 
+      } 
+    } 
+  } 
+
+}	
+											
+											
+										]
+									}
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	},
+	"_source": {
+		"includes": [
+			"COUNT"
+		],
+		"excludes": []
+	},
+	"aggregations": {
+		"COUNT(*)": {
+			"value_count": {
+				"field": "_index"
+			}
+		}
+	}
+}

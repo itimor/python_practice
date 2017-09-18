@@ -1,0 +1,68 @@
+<div class="post">
+    <div class="post-title">
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        <div class="post-info pull-right inline">
+            <a>
+                <span class="glyphicon glyphicon-calendar"></span>
+                {{ post.publish_time | date:"Y年m月d日 H:i" }}
+            </a>|
+            <a>
+                <span class="glyphicon glyphicon-comment"></span>
+                {{ post.comment_set.all | length }}
+            </a>|
+            <a>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                {{ post.access_count }}
+            </a>
+        </div>
+    </div>
+    <div class="post-content">
+        {% if is_index %}
+            <div class="row">
+                <div class="col-sm-4">
+                    <cover class="thumbnail">
+                        <a href="{{ post.link }}">
+                            {% if post.img_upload %}
+                                <img src="/upload/{{ post.img_upload }}" alt="">
+                            {% else %}
+                                <img src="/static/image/cover.jpg" alt="">
+                            {% endif %}
+                        </a>
+                    </cover>
+                </div>
+                <div class="col-sm-8">
+                    <p>
+                        {% autoescape off %}
+                            {{ post.content|safe|slice:"300" }}
+                        {% endautoescape %}
+                    </p>
+                </div>
+            </div>
+            <div class="post-tags">
+                <a class="glyphicon glyphicon-tag"> </a>
+                {% for tag in post.tags.all %}
+                    <a href="tags/{{ tag.id }}">
+                        {{ tag }}
+                    </a>
+                {% endfor %}
+                <a type="button" class="btn btn-blog pull-right hidden-xs"
+                   href="{{ post.get_absolute_url }}">阅读全文</a>
+            </div>
+        {% else %}
+            <p>
+                {% autoescape off %}
+                    {{ post.content|safe }}
+                {% endautoescape %}
+            </p>
+            <div class="post-tags">
+                <a class="glyphicon glyphicon-tag"> </a>
+                {% for tag in post.tags.all %}
+                    <a href="tags/{{ tag.id }}">
+                        {{ tag }}
+                    </a>
+                {% endfor %}
+            </div>
+            {% include 'block/post-page.html' %}
+        {% endif %}
+    </div>
+</div>

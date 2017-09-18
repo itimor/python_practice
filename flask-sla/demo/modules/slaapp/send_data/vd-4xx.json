@@ -1,0 +1,96 @@
+{
+	"from": 0,
+	"query": {
+		"filtered": {
+			"filter": {
+				"bool": {
+					"must": {
+						"bool": {
+							"must": [
+								{
+									"query": {
+										"match": {
+											"server": {
+												"query": "m.vd.cn",
+												"type": "phrase"
+											}
+										}
+									}
+								},
+								{
+									"bool": {
+										"should": [
+											{
+												"query": {
+													"match": {
+														"request_status": {
+															"query": "404",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status": {
+															"query": "499",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status": {
+															"query": "400",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status": {
+															"query": "401",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status": {
+															"query": "405",
+															"type": "phrase"
+														}
+													}
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	},
+	"_source": {
+		"includes": [
+			"COUNT"
+		],
+		"excludes": []
+	},
+	"aggregations": {
+		"COUNT(*)": {
+			"value_count": {
+				"field": "_index"
+			}
+		}
+	}
+}

@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+body {
+    font-family: 'Oranienbaum', serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    position: relative;
+    text-shadow: 0 0px, 1px 1px #2c2c2c;
+}
+
+header {
+    background: #2c2c2c;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.contentBody {
+    width: 50%;
+    margin-left: 12%;
+}
+
+.sidebar {
+    width: 23%;
+    float: right;
+    margin-right: 12%;
+    background: none repeat scroll 0 0 rgba(44, 44, 44, 0.7);
+}
+
+.post {
+    position: relative;
+    width: 100%;
+    float: right;
+    margin-bottom: 2%;
+    padding: 1% 2%;
+    background: none repeat scroll 0 0 rgba(44, 44, 44, 0.4);
+}
+
+.post-title {
+    font-size: 2em;
+    color: #ff78eb;
+}
+
+.post-info {
+    font-size: 0.5em !important;
+    color: #818181;
+    margin-top: 2%;
+}
+
+.post .post-content p {
+    color: #FFFFFF;
+}
+
+.sBlock {
+    padding: 3% 12%;
+}
+
+.sBlock p {
+    border: 1em;
+    color: #77f5ff;
+}
+
+.search {
+    text-align: center;
+    list-style: none;
+    margin: 1% 2%;
+}
+
+.sBlock li {
+    list-style: none;
+}
+
+.sBlock li a {
+    display: block;
+    border-bottom: 1px solid #6c6c6c;
+    color: #ffffff;
+    padding: 10px 5px 10px 20px;
+}
+
+.sBlock li a:hover {
+    padding: 10px 5px 10px 20px;
+    background: rgba(44, 44, 44, 0.6);
+    color: #6ab0ff;
+}
+
+.post-page {
+    margin-top: 2%;
+}
+
+.prev_post {
+    float: left;
+}
+
+.prev_post:hover {
+    color: rgba(221, 115, 217, 0.68);
+}
+
+.next_post {
+    float: right;
+}
+
+/*分页*/
+.pagination {
+    position: relative;
+    float: right;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    background: none repeat scroll 0 0 rgba(44, 44, 44, 0.4);
+    padding: 1% 2%;
+}
+
+.pagination div {
+    display: inline;
+    margin: 5%;
+}
+
+.cur_page {
+    color: #ff78eb;
+}
+
+.total_page {
+    color: white;
+}
+
+footer {
+    background: #2c2c2c;
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+footer p a {
+    font-size: 0.7em; /* 12px/14px */
+    color: white;
+}
+
+footer p span {
+    color: #2aabd2;
+}
+
+.clearfloat {
+    clear: both;
+    height: 0;
+    line-height: 0px;
+}
+
+/**************************/
+/*********************************Begin main menu****************************************/
+/**************************/
+nav {
+    text-align: right;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    margin-right: 4%;
+}
+
+nav li {
+    list-style: none;
+    display: inline;
+}
+
+nav li a {
+    font-family: 'Coda', cursive;
+    text-shadow: none;
+    text-decoration: none;
+    padding: 20px 10px;
+    font-weight: bold;
+    color: #696969;
+    text-transform: uppercase;
+}
+
+nav li a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+nav .active a {
+    color: #ffffff;
+    background: #696969;
+}
+
+nav select {
+    display: none;
+}
+
+select {
+    width: 200px;
+}
+
+/**************************/
+/*********************************End main menu****************************************/
+/**************************/
+/*********************************Begin Media Queries****************************************/
+/**************************/
+/* for 960px or less */
+@media screen and (max-width: 980px) {
+    .wrapper {
+        width: 93.75%; /* 960px/1024px  */
+        margin: 0 auto;
+    }
+}
+
+/* for 768px or less */
+@media screen and (max-width: 768px) {
+    .contentBody, .sidebar {
+        float: none;
+        width: auto;
+    }
+
+    .contentBody {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+/* for 480px or less */
+@media screen and (max-width: 480px) {
+    nav ul {
+        display: none;
+    }
+
+    nav select {
+        display: inline-block;
+    }
+
+    .post span {
+        position: inherit;
+        margin: 0 4%;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+}
+
+/**************************/
+/*********************************End Media Queries****************************************/
+/**************************/
+
+/*控制菜单箭头*/
+.panel-title > span.glyphicon-chevron-up:before {
+    color: #ff78eb;
+}
+
+.panel-title > span.glyphicon-chevron-up.collapsed:before {
+    content: "\e114";
+    color: #77f5ff;
+}

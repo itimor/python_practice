@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+<title>
+    {% block title %}
+        itimor's blog
+    {% endblock %}
+</title>
+<body style="background:#232323 url(/upload/background/bg.jpg) no-repeat fixed center top;">
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+{% block content %}{% endblock %}
+<div class="clearfloat"></div>
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}
+</body>
+{% block scripts %}
+{% endblock %}
+</html>

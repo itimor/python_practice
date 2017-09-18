@@ -1,0 +1,34 @@
+{
+	"from": 0,
+	"query": {
+		"filtered": {
+			"filter": {
+				"bool": {
+					"must": {
+						"query": {
+							"match": {
+								"server": {
+									"query": "10.252.218.121",
+									"type": "phrase"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"_source": {
+		"includes": [
+			"COUNT"
+		],
+		"excludes": []
+	},
+	"aggregations": {
+		"COUNT(*)": {
+			"value_count": {
+				"field": "_index"
+			}
+		}
+	}
+}

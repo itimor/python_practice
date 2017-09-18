@@ -1,0 +1,106 @@
+{
+	"from": 0,
+	"query": {
+		"filtered": {
+			"filter": {
+				"bool": {
+					"must": {
+						"bool": {
+							"must": [
+								{
+									"query": {
+										"match": {
+											"server": {
+												"query": "10.252.218.121",
+												"type": "phrase"
+											}
+										}
+									}
+								},
+								{
+									"bool": {
+										"should": [
+											{
+												"query": {
+													"match": {
+														"request_status.raw": {
+															"query": "200",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status.raw": {
+															"query": "206",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status.raw": {
+															"query": "301",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status.raw": {
+															"query": "302",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status.raw": {
+															"query": "304",
+															"type": "phrase"
+														}
+													}
+												}
+											},
+											{
+												"query": {
+													"match": {
+														"request_status.raw": {
+															"query": "201",
+															"type": "phrase"
+														}
+													}
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	},
+	"_source": {
+		"includes": [
+			"COUNT"
+		],
+		"excludes": []
+	},
+	"aggregations": {
+		"COUNT(*)": {
+			"value_count": {
+				"field": "_index"
+			}
+		}
+	}
+}

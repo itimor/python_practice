@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}python flask user page{% endblock %}
+{% block head %}
+    <style type="text/css"></style>
+{% endblock %}
+{% block content %}
+    <form action="{{ url_for('user.login') }}" method="post">
+        {% if form.errors %}
+            <ul>
+                {% for name, errors in form.errors.items() %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>The user or password is error!</p>
+        {% endif %}
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.accountNumber.label }}:
+            {{ form.accountNumber(size=25) }}
+        </p>
+        <p>
+            {{ form.password.label }}:
+            <!-- 我们可以传递input标签的属性，这里传递的是size属性 -->
+            <p class="bg-danger">
+        </p>
+        <p>
+            <input type="checkbox" name="remember_me"/>Remember Me
+        </p>
+        <p><input type="submit" value="Sign In"></p>
+    </form>
+    <a href="/">返回</a>
+{% endblock %}

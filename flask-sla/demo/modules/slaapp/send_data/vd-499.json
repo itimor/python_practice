@@ -1,0 +1,50 @@
+{
+	"from": 0,
+	"query": {
+		"filtered": {
+			"filter": {
+				"bool": {
+					"must": {
+						"bool": {
+							"must": [
+								{
+									"query": {
+										"match": {
+											"server": {
+												"query": "m.vd.cn",
+												"type": "phrase"
+											}
+										}
+									}
+								},
+								{
+									"query": {
+										"match": {
+											"request_status": {
+												"query": "499",
+												"type": "phrase"
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	},
+	"_source": {
+		"includes": [
+			"COUNT"
+		],
+		"excludes": []
+	},
+	"aggregations": {
+		"COUNT(*)": {
+			"value_count": {
+				"field": "_index"
+			}
+		}
+	}
+}

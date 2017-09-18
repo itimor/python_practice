@@ -1,0 +1,28 @@
+<div class="post-page">
+    {% if prev_post == None %}
+        <div class="prev_post hidden">
+            <a href="{{ prev_post.get_absolute_url }}">
+                <i class="glyphicon glyphicon-chevron-left"></i> {{ prev_post }}
+            </a>
+        </div>
+    {% else %}
+        <div class="prev_post ">
+            <a href="{{ prev_post.get_absolute_url }}">
+                <i class="glyphicon glyphicon-chevron-left"></i> {{ prev_post }}
+            </a>
+        </div>
+    {% endif %}
+    {% if next_post == None %}
+        <div class="next_post hidden">
+            <a href="{{ next_post.get_absolute_url }}">
+                {{ next_post }} <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="next_post">
+            <a href="{{ next_post.get_absolute_url }}">
+                {{ next_post }} <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        </div>
+    {% endif %}
+</div>

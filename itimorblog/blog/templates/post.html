@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ page.title }}
+{% endblock %}
+{% block content %}
+    <div class="wrapper">
+        {% block sidebar %}
+            {% include 'sidebar.html' %}
+        {% endblock %}
+        <div class="contentBody">
+            <div id="posts" class="posts-expand">
+                {% include 'block/post_detail.html' with next_post=next_post prev_post=prev_post %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

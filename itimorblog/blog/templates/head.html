@@ -1,0 +1,44 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/image/favicon.ico">
+
+    <link href="/static/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/vim.css" rel="stylesheet" type="text/css">
+
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/main.js"></script>
+
+    <script>
+        // DOM ready
+        $(function () {
+
+            // Create the dropdown base
+            $("<select />").appendTo("nav");
+
+            // Create default option "Go to..."
+            $("<option />", {
+                "selected": "selected",
+                "value": "",
+                "text": "Select a page"
+            }).appendTo("nav select");
+
+            // Populate dropdown with menu items
+            $("nav a").each(function () {
+                var el = $(this);
+                $("<option />", {
+                    "value": el.attr("href"),
+                    "text": el.text()
+                }).appendTo("nav select");
+            });
+
+            // To make dropdown actually work
+            $("nav select").change(function () {
+                window.location = $(this).find("option:selected").val();
+            });
+
+        });
+    </script>
+</head>

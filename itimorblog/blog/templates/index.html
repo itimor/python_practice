@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+    博客
+{% endblock %}
+{% block content %}
+    <div class="wrapper">
+        {% block sidebar %}
+            {% include 'sidebar.html' %}
+        {% endblock %}
+        <div class="contentBody">
+            <!--首页文章列表 -->
+            {% if posts %}
+                {% for post in posts %}
+                    {% include "block/post_detail.html" with post=post is_index=True %}
+                {% endfor %}
+            {% endif %}
+            <!--分页 -->
+            {% if page_obj %}
+                {% include "block/pagination.html" %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

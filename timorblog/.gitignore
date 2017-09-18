@@ -1,0 +1,14 @@
+*.pyc
+*.db
+/static/*
+.idea/
+.DS_Store
+.python-version
+node_modules/
+dist/
+/migrations/
+img/
+cover/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
